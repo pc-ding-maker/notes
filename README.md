@@ -1,2 +1,2 @@
-# notes
-Learning notes
+# 学习笔记
+用来记录前端学习过程中的笔记。
