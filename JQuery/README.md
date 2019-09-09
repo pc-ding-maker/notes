@@ -29,7 +29,6 @@
 <br>
 + 写法：
 	+ 第一种写法：
-<<<<<<< HEAD
 	``` JavaScript
 	$(document).ready(function () {
        });
@@ -44,34 +43,23 @@
 		 $(function () {
         });
 	```
-=======
-	
-		``` JavaScript
-		$(document).ready(function () {
-        });
-		```
-		
 	+ 第二种写法：
-	
-		``` JavaScript
+	``` JavaScript
 		jQuery(document).ready(function () {
         });
-		```
+	```
 		
 	+ 第三种写法：(推荐方式)
-	
-		```JavaScript
+	```JavaScript
 		 $(function () {
         });
-		```
+	```
 		
->>>>>>> c7a83478fa375282f55ebcc5beb3c6450f990275
 	+ 第四种写法:
-	
-		``` JavaScript
+	``` JavaScript
 		jQuery(function(){
 		});
-		```
+	```
 		
 <br>
 
