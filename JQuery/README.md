@@ -29,20 +29,20 @@
 <br>
 + 写法：
 	+ 第一种写法：
-		``` JavaScript
-		$(document).ready(function () {
-        });
-		```
+	``` JavaScript
+	$(document).ready(function () {
+       });
+	```
 	+ 第二种写法：
-		``` JavaScript
-		jQuery(document).ready(function () {
-        });
-		```
+	``` JavaScript
+	jQuery(document).ready(function () {
+       });
+	```
 	+ 第三种写法：(推荐方式)
-		```JavaScript
+	```JavaScript
 		 $(function () {
         });
-		```
+	```
 	+ 第四种写法:
 		``` JavaScript
 		jQuery(function(){
@@ -143,7 +143,7 @@
         返回值: true/false
 
 + $.isFunction()
-		作用: 判断传入的对象是否是一个函数
+		+ 作用: 判断传入的对象是否是一个函数
         返回值: true/false
 		 注意点:
         jQuery框架本质上是一个函数
@@ -153,8 +153,8 @@
         console.log(res); //true
 
 + $.holdReady(true/false)：
-		参数：true or false
-		作用：传true代表暂停入口函数的执行，传false代表恢复入口函数的执行
+	+ 参数：true or false
+	+ 作用：传true代表暂停入口函数的执行，传false代表恢复入口函数的执行
 		
 
 ### 属性相关函数
