@@ -29,25 +29,33 @@
 <br>
 + 写法：
 	+ 第一种写法：
+	
 		``` JavaScript
 		$(document).ready(function () {
         });
 		```
+		
 	+ 第二种写法：
+	
 		``` JavaScript
 		jQuery(document).ready(function () {
         });
 		```
+		
 	+ 第三种写法：(推荐方式)
+	
 		```JavaScript
 		 $(function () {
         });
 		```
+		
 	+ 第四种写法:
+	
 		``` JavaScript
 		jQuery(function(){
 		});
 		```
+		
 <br>
 
 + 解决$（符号）冲突
@@ -72,8 +80,9 @@
        会将传入的数据存储到jQuery对象中返回
 ### jQuery静态方法：
 + each
+
 	```JavaScript
-		/*
+	/*
         第一个参数: 遍历到的元素
         第二个参数: 当前遍历到的索引
         注意点:
