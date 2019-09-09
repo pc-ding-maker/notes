@@ -27,26 +27,30 @@
 		原生的JS如果编写了多个入口函数,后面编写的会覆盖前面编写的
 		jQuery中编写多个入口函数,后面的不会覆盖前面的
 <br>
+
 + 写法：
+
 	+ 第一种写法：
 	``` JavaScript
 	$(document).ready(function () {
-       });
+    });
 	```
+
 	+ 第二种写法：
-	``` JavaScript
+	```JavaScript
 	jQuery(document).ready(function () {
        });
 	```
+
 	+ 第三种写法：(推荐方式)
 	```JavaScript
 		 $(function () {
         });
 	```
 	+ 第二种写法：
-	``` JavaScript
-		jQuery(document).ready(function () {
-        });
+	```JavaScript
+	jQuery(document).ready(function () {
+     });
 	```
 		
 	+ 第三种写法：(推荐方式)
@@ -144,20 +148,24 @@
         map静态方法可以在回调函数中通过return对遍历的数组进行处理, 然后生成一个新的数组返回
 
 + $.trim() 
+
 		作用: 去除字符串两端的空格
         参数: 需要去除空格的字符串
         返回值: 去除空格之后的字符串
 
 + $.isWindow()
+
 		作用: 判断传入的对象是否是window对象
         返回值: true/false
 
 + $.isArray()
+
 		作用: 判断传入的对象是否是真数组
         返回值: true/false
 
 + $.isFunction()
-		+ 作用: 判断传入的对象是否是一个函数
+
+		作用: 判断传入的对象是否是一个函数
         返回值: true/false
 		 注意点:
         jQuery框架本质上是一个函数
@@ -167,8 +175,9 @@
         console.log(res); //true
 
 + $.holdReady(true/false)：
-	+ 参数：true or false
-	+ 作用：传true代表暂停入口函数的执行，传false代表恢复入口函数的执行
+
+		参数：true or false
+		作用：传true代表暂停入口函数的执行，传false代表恢复入口函数的执行
 		
 
 ### 属性相关函数
@@ -187,17 +196,21 @@
 		$("span").attr("class", "box"); //给找到的span添加类名box	
 
 + removeAttr
+
 		删除属性节点
         注意点:
         会删除所有找到元素指定的属性节点
 		$("span").removeAttr("class"); //删除span的类
 
 + prop
+
 		特点和attr方法一致
 
 + removeProp
+
 		特点和removeAttr方法一致
 
 #### 注意点：
-		prop方法不仅能够操作属性, 他还能操作属性节点
-        官方推荐在操作属性节点时,具有 true 和 false 两个属性的属性节点，如 checked, selected 或者 disabled 使用prop()，其他的使用 attr()
+
+	prop方法不仅能够操作属性, 他还能操作属性节点
+    官方推荐在操作属性节点时,具有 true 和 false 两个属性的属性节点，如 checked, selected 或者 disabled 使用prop()，其他的使用 attr()
