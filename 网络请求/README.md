@@ -18,3 +18,10 @@
 相互转换 | Json转换Js对象1.JSON.parse(JsonStr);(不兼容IE7)<br>2.eval("("+jsonStr+")");(兼容所有浏览器，需要注意在值的两边需要加括号)| js对象转换JsonJSON.stringify(jsObj); 
 
 ##### 注意：json仅仅是一种格式，json对象其实是按照既定规则书写的js对象，json对象就是js对象
+<br>
+
+## 数据存储
++ cookie
++ LocalStorage
++ SessionStorage
+
