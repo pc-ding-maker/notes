@@ -25,3 +25,14 @@
 + LocalStorage
 + SessionStorage
 
+## 同源策略
++ 同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能
++ 同源是指: 协议，域名，端口都相同,就是同源, 否则就是跨域
+
+#### 解决跨域问题：
++ jsonp
++ document.domain+iframe
++ location.hash + iframe
++ window.name + iframe
++ window.postMessage
++ flash等第三方插件
