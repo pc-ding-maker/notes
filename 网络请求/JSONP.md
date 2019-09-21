@@ -1,4 +1,4 @@
-# JSONSP
+# JSONP
 ------
 + JSONP让网页从别的地址（跨域的地址）那获取资料，即跨域读取数据
 + JSONP只支持GET请求，不支持POST请求
