@@ -46,6 +46,10 @@
 	
     5、如果then方法返回的是一个Promise对象, 那么会将返回的Promise对象的
     执行结果中的值传递给下一个then方法
+	
+	6、Promise.resolve('foo')
+	// 等价于
+	new Promise(resolve => resolve('foo'))
 
 ## catch方法：
 	
@@ -56,6 +60,9 @@
     当该promise对象的状态时所有catch方法都会被执行
 	4、和then一样, catch方法每次执行完毕后会返回一个新的promise对象
 	5、和then方法一样, 上一个promise对象也可以给下一个promise成功的传递参数
+	6、Promise.reject('foo')
+	// 等价于
+	new Promise(reject => reject('foo'))
     注意点:
     无论是在上一个promise对象成功的回调还是失败的回调传递的参数,
     都会传递给下一个promise对象成功的回调
