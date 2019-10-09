@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-SVG开篇</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        svg{
+            background: red;
+            /*width: 500px;*/
+            /*height: 500px;*/
+        }
+    </style>
+</head>
+<body>
+<!--
+1.注意点:
+和canvas一样, svg也有默认的宽高, 并且默认的宽高和canvas都是一样的
+默认的宽度是300px, 默认的高度是150px
+
+2.注意点:
+和canvas不一样的是, svg可以通过css设置宽高, 也可以通过行内的属性来设置宽高
+-->
+<svg width="500" height="500">
+    <circle cx="100" cy="100" r="50" fill="transparent" stroke="#000"></circle>
+</svg>
+<script>
+    /*
+    1.什么是SVG?
+    SVG英文全称为Scalable Vector Graphics，意思为可缩放的矢量图
+
+    2.位图和矢量图
+    在计算机中有两种图形, 一种是位图, 一种是矢量图
+    2.1位图:
+    传统的 jpg / png / gif图都是位图
+    位图是一个个很小的颜色小方块组合在一起的图片。一个小方块代表1px
+    2.2位图的优点和缺点:
+    优点: 色彩丰富逼真
+    缺点: 放大后会失真, 体积大
+
+    2.3矢量图
+    矢量图是用XML格式定义, 通过各种「路径」和「填充颜色」来描述渲染的的图片
+    2.4矢量图优点和缺点:
+    优点: 放大后不会失真, 体积小
+    缺点: 不易制作色彩变化太多的图象
+    * */
+</script>
+</body>
+</html>

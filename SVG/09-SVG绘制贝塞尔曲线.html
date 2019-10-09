@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-SVG绘制贝塞尔曲线</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        svg{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<svg width="500" height="500">
+    <!--<path d="M 100 100 Q 150 50 200 100" stroke="red" fill="none"></path>-->
+    <path d="M100 100 C 100 50 200 50 200 100" stroke="red" fill="none"></path>
+</svg>
+<script>
+    /*
+    Q = quadratic Bézier curve
+    Q(x1, y1, x, y) 从当前位置绘制二次贝塞尔曲线到指定位置
+    x1,y1: 控制点位置
+    x,y: 终点位置
+
+    C = curveto
+    C(x1, y1, x2, y2, x, y)  从当前位置绘制三次贝塞尔曲线到指定位置
+    x1, y1: 控制点1位置
+    x2, y2: 控制点2位置
+    x, y: 终点位置
+    * */
+</script>
+</body>
+</html>

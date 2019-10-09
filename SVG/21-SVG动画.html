@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21-SVG动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        svg{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    1.SVG动画
+    在SVG中提供了三种常用动画标记
+    <animate> 基础动画
+    <animateTransform> 形变动画
+    <animateMotion> 路径动画
+
+    2.SVG动画使用方式
+    2.1创建动画, 告诉动画标记哪个元素需要执行动画
+    2.2创建元素, 在元素中说明需要执行什么动画
+
+    3.SVG动画属性
+    attributeType: CSS/XML 规定的属性值的名称空间
+    attributeName: 规定元素的哪个属性会产生动画效果
+    from/to: 从哪到哪
+    dur: 动画时长
+    fill: 动画结束之后的状态 保持freeze结束状态/remove恢复初始状态
+    -->
+    <svg width="500" height="500">
+        <!--
+        <circle id="myCircle" cx="100" cy="100" r="50" fill="blue"></circle>
+        <animate
+          attributeName="r"
+          from="50"
+          to="100"
+          dur="5s"
+          xlink:href="#myCircle"
+        ></animate>
+        -->
+        <circle cx="100" cy="100" r="50" fill="blue">
+            <animate
+                    attributeName="r"
+                    from="50"
+                    to="100"
+                    dur="5s"
+                    fill="freeze"
+            ></animate>
+        </circle>
+    </svg>
+</body>
+</html>

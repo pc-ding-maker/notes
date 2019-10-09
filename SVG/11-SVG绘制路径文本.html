@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-SVG绘制路径文本</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        svg{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<svg width="500" height="500">
+    <!--
+    总结:
+    1.定义一个路径
+    2.告诉文本需要按照哪个路径来绘制
+
+    注意点:
+    如果是绘制路径文本, 那么超出路径范围的内容不会被绘制出来
+    -->
+    <defs>
+        <path id="myPath" d="M 100 100 Q 150 50 200 100" stroke="red" fill="none"></path>
+    </defs>
+    <text>
+        <textPath xlink:href="#myPath">知播渔教育(http://www.it666.com)</textPath>
+    </text>
+</svg>
+</body>
+</html>

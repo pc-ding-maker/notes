@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21-SVG动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        svg{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    1.SVG常用动画属性
+    repeatCount: 规定动画重复的次数。
+    repeatDur: 规定动画重复总时长
+    begin: 规定动画开始的时间
+        begin="1s"
+        begin="click"
+        begin="click + 1s"
+    restart: 规定元素开始动画之后，是否可以被重新开始执行
+        always：动画可以在任何时候被重置。这是默认值。
+        whenNotActive：只有在动画没有被激活的时候才能被重置，例如在动画结束之后。
+        never：在整个SVG执行的过程中，元素动画不能被重置。
+    calcMode: 规定每一个动画片段的动画表现
+        linear：默认属性值, 匀速动画
+        discrete: 非连续动画, 没有动画效果瞬间完成
+        paced: 规定整个动画效果始终以相同的速度进行，设置keyTimes属性无效
+        spline: 配合keySplines属性来定义各个动画过渡效, 自定义动画
+    keyTimes:
+        划分动画时间片段, 取值0-1
+    values:
+        划分对应取值片段的值
+
+    更多: www.w3.org/TR/SVG/animate.html
+    ... ...
+    -->
+    <svg width="500" height="500">
+        <circle cx="100" cy="100" r="50" fill="blue">
+            <animate
+                    attributeName="r"
+                    from="50"
+                    to="100"
+                    dur="2s"
+                    fill="freeze"
+                    begin="click"
+                    calcMode="linear"
+                    keyTimes="0;0.5;1"
+                    values="20;50;100"
+            ></animate>
+        </circle>
+    </svg>
+</body>
+</html>

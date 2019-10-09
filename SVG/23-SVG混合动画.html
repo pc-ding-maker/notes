@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>23-SVG混合动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        svg{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+    <svg width="500" height="500">
+        <circle cx="100" cy="100" r="50" fill="blue">
+            <!--
+            <animate
+                    attributeName="r"
+                    from="50"
+                    to="100"
+                    dur="2s"
+                    fill="freeze"
+                    begin="click"
+            ></animate>
+            <animate
+                    attributeName="fill"
+                    from="blue"
+                    to="red"
+                    dur="2s"
+                    fill="freeze"
+                    begin="click"
+            ></animate>
+            -->
+            <animate
+                    id="toRight"
+                    attributeName="cx"
+                    from="100"
+                    to="300"
+                    dur="2s"
+                    begin="0;toLeft.end"
+                    fill="freeze"
+            ></animate>
+            <animate
+                    id="toLeft"
+                    attributeName="cx"
+                    from="300"
+                    to="100"
+                    dur="2s"
+                    begin="toRight.end + 2s"
+                    fill="freeze"
+            ></animate>
+        </circle>
+    </svg>
+</head>
+<body>
+
+</body>
+</html>

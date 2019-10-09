@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>26-SVG脚本编程</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        svg{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<!--
+<svg width="500" height="500">
+    <circle cx="100" cy="100" r="50" fill="red"></circle>
+    <image xlink:href="images/lnj.jpg" x="200" y="200"></image>
+</svg>
+-->
+<script>
+    /*
+    1.SVG脚本编程注意点:
+    创建SVG时必须指定命名空间
+    const SVG_NS = "http://www.w3.org/2000/svg"
+    * */
+    const SVG_NS = "http://www.w3.org/2000/svg"
+    // let oSvg = document.createElement("svg");
+    let oSvg = document.createElementNS(SVG_NS,"svg");
+    oSvg.setAttribute("width", "500");
+    oSvg.setAttribute("height", "500");
+    document.body.appendChild(oSvg);
+
+    // let oCircle = document.createElement("circle");
+    let oCircle = document.createElementNS(SVG_NS,"circle");
+    oCircle.setAttribute("cx", "100");
+    oCircle.setAttribute("cy", "100");
+    oCircle.setAttribute("r", "50");
+    oCircle.setAttribute("fill", "red");
+    oSvg.appendChild(oCircle);
+
+    /*
+    2.SVG脚本编程注意点:
+    使用xlink属性也必须指定命名空间
+    const XLINK_NS = "http://www.w3.org/1999/xlink";
+    * */
+    const XLINK_NS = "http://www.w3.org/1999/xlink";
+    let oImage = document.createElementNS(SVG_NS, "image");
+    oImage.setAttribute("x", "200");
+    oImage.setAttribute("y", "200");
+    // oImage.setAttribute("xlink:href", "images/lnj.jpg");
+    oImage.setAttributeNS(XLINK_NS,"xlink:href", "images/lnj.jpg");
+    oSvg.appendChild(oImage);
+
+    /*
+    3.脚本编程推荐自学svg框架
+    https://svgjs.com/
+    http://snapsvg.io/docs/
+    * */
+</script>
+</body>
+</html>
