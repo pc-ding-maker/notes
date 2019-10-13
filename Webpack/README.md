@@ -154,3 +154,31 @@ import xxx from "path";
 变量名被修改后原有变量名自动失效
 + 一个模块只能使用一次默认导出, 多次无效
 默认导出时, 导入的名称可以和导出的名称不一致
+
+## 配置文件优化
++ 创建三个webpack对的配置文件
+	+ webpack.config.common.js :公共配置文件
+	+ webpack.config.dev.js	   ：开发阶段配置文件
+	+ webpack.config.prod.js   ：上线阶段配置文件
+
++ 通过区分项目阶段来对配置文件进行合并
+
+### 合并过程：
+1. 安装：
+	`npm install --save-dev webpack-merge`
+2. 进行合并（修改开发阶段和上线阶段的配置文件）
+	```javascript
+	const Webpack = require('webpack');
+	const HtmlWebpackPlugin = require('html-webpack-plugin');
+	//引入合并插件
+	const Merge = require("webpack-merge");
+	//引入公共配置文件
+	const CommonConfig = require("./webpack.config.common.js");
+	
+	const DevConfig = {
+    	//配置项
+	};
+	//导出合并完的配置文件
+	module.exports = Merge(CommonConfig, DevConfig);
+
+	```
