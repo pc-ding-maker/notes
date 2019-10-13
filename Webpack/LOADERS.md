@@ -195,3 +195,76 @@ module.exports = {
             propList: ["height"] //只改变height
         }
 	```
+
+## image-loader
++ html-withimg-loader
++ [文档地址](https://www.npmjs.com/package/html-withimg-loader)
+		通过file-loader或者url-loader已经可以将JS或者CSS中用到的图片打包到指定目录中了
+		但是file-loader或者url-loader并不能将HTML中用到的图片打包到指定目录中
+		所以此时我们就需要再借助一个名称叫做"html-withimg-loader"的加载器来实现HTML中图片的打包
+
+###### 使用：
+1. 安装
+		`npm install html-withimg-loader --save`
+2. 配置module
+		`{
+    test: /\.(htm|html)$/i,
+    loader: 'html-withimg-loader'
+}`
+
+### 图片压缩
++ 每次在打包图片之前,我们可以通过配置webpack对打包的图片进行压缩, 以较少打包之后的体积
+
++ [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader)
+
+##### 使用：
+1. 安装：
+	`npm install image-webpack-loader --save-dev`
+2. 配置：在打包图片的规则下面加上
+	```javascript
+	 {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: [0.65, 0.90],
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    },
+	```
+
+### 图片合并
++ 过去为了减少网页请求的次数, 我们需要"UI设计师"给我们提供精灵图,
+并且在使用时还需要手动的去设置每张图片的位置
+但是有了webpack之后我们只需要让"UI设计师"给我们提供切割好的图片
+我们可以自己合成精灵图, 并且还不用手动去设置图片的位置
+
++ [postcss-sprites](https://www.npmjs.com/package/postcss-sprites)
++ [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith)
+
+### 图片打包后路径问题：
++ webpack打包之后给我们的都是相对路径
+但是正是因为是相对路径, 所以会导致在html中使用的图片能够正常运行, 在css中的图片不能正常运行
+
+##### 原因：
+	在html中, 会去html文件所在路径下找images,正好能找到所以不报错
+    但是在css中,  会去css文件所在路径下找images, 找不到所以报错
+
+##### 解决：
+	在开发阶段将publicPath设置为dev-server服务器地址
+	在上线阶段将publicPath设置为线上服务器地址	
