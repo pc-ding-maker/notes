@@ -266,3 +266,268 @@
     <image xlink:href="images/image.jpg" x="100" y="100"></image>
 </svg>
 ```
+
+## 结构元素
+### g
++ g是group的缩写, 可以将多个元素放到一个g标记中, 这样就组成了一个组,以便统一操作
++ 对g标记设置的所有样式都会应用到这一组所有的元素中
++ g封装的元素默认是可见的
+
+##### 代码示例：
+```html
+ <g id="myGroup">
+            <circle cx="100" cy="100" r="100"></circle>
+            <circle cx="100" cy="200" r="50"></circle>
+            <circle cx="100" cy="300" r="30"></circle>
+        </g>
+<use xlink:href="#myGroup" x="300" fill="blue"></use>
+```
+
+### defs
++ defs默认不可见
++ 如果仅仅是需要定义一组模板, 将来需要用到时候才显示, 那么就可以使用defs包裹起来
+
+##### 代码示例：
+```html
+   <defs>
+        <g id="myGroup">
+            <circle cx="100" cy="100" r="100"></circle>
+            <circle cx="100" cy="200" r="50"></circle>
+            <circle cx="100" cy="300" r="30"></circle>
+        </g>
+    </defs>
+    <use xlink:href="#myGroup" x="0" fill="blue"></use>
+    <use xlink:href="#myGroup" x="300" fill="red"></use>
+```
+
+### symbol
++ symbol兼具<g>的分组功能和<defs>初始不可见的特性
++  symbol能够创建自己的视窗，所以能够应用viewBox和preserveAspectRatio属性。
+
+##### 代码示例：
+```html
+<symbol>
+        <g id="myGroup">
+            <circle cx="100" cy="100" r="100"></circle>
+            <circle cx="100" cy="200" r="50"></circle>
+            <circle cx="100" cy="300" r="30"></circle>
+        </g>
+    </symbol>
+    <use xlink:href="#myGroup" x="0" fill="blue"></use>
+    <use xlink:href="#myGroup" x="300" fill="red"></use>
+```
+
+### use
++ g结构元素封装的图形还可以通过<use>元素进行复制使用
++ `<use  xlink:href="#id"/>`
+
+## 裁剪和蒙版
+### 裁剪
++ 通过clipPath标签实现
++ 只有路径范围内的内容会被显示, 路径范围外的内容不会被显示
++ 裁切路径是可见与不可见的突变
+
+##### 代码示例:
+```html
+<clipPath id="myClip">
+        <circle cx="200" cy="200" r="100" fill="red"></circle>
+    </clipPath>
+    <rect x="100" y="100" width="300" height="200" fill="blue" clip-path="url(#myClip)"></rect>
+```
+
+### 蒙版
++ 通过mask标签实现
++ 蒙版则是可见与不可见的渐变
+
+##### 代码示例：
+```html
+<mask id="myMask">
+        <circle cx="200" cy="200" r="100" fill="rgba(255, 0, 0, 0.5)"></circle>
+    </mask>
+    <rect x="100" y="100" width="300" height="200" fill="blue" mask="url(#myMask)"></rect>
+```
+
+## 渐变
++ 线性渐变通过linearGradient标签来实现
++ 径向渐变通过radialGradient标签来实现
+
+### 渐变属性：
+	 x1/y1: 渐变范围开始位置
+     x2/y2: 渐变范围结束位置
+     默认情况下x1/y1/x2/y2是当前元素的百分比
+     可以通过gradientUnits修改
+     gradientUnits="objectBoundingBox"
+     gradientUnits="userSpaceOnUse"
+
+###### 注意点：
++ 使用渐变颜色需要通过url(#id)格式来使用
+
+#### 代码示例:
+```html
+<linearGradient id="myColor" x1="100" y1="100" x2="400" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="red"></stop>
+            <stop offset="1" stop-color="blue"></stop>
+</linearGradient>
+<rect x="100" y="100" width="300" height="200" fill="url(#myColor)"></rect>
+```
+
+## 画笔：
++ 在SVG中除了可以使用纯色和渐变色作为填充色以外, 还可以使用自定义图形作为填充
++ 通过pattern来定义
+
+#### 属性：
+	width/height默认情况下也是百分比
+    可以通过gradientUnits修改
+    patternUnits="objectBoundingBox"  
+    patternUnits="userSpaceOnUse"	
+
+#### 代码示例:
+```html
+<pattern id="myPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+            <circle cx="10" cy="10" r="10" fill="red"></circle>
+</pattern>
+<rect x="100" y="100" width="300" height="200" fill="url(#myPattern)"></rect>
+```	
+
+## 形变
++ 和Canvas一样, 改变的是坐标系
+
+## ViewBox
++ ViewBox就是可视区域, 用户能看到的区域
++ 默认情况下，可视区域的大小和内容区域大小是一致的
+
+#### 属性
+	viewBox="x y width height"
+    x:修改可视区域x方向位置
+    y:修改可视区域y方向位置
+    width/height: 修改可视区域尺寸, 近大远小
+
+#### 代码示例:
+```html
+<svg width="200" height="200" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50" fill="red"></circle>
+</svg>
+```
+
+##### 注意点:
+	默认情况下如果viewBox的尺寸是等比缩放的, 那么调整后viewBox区域的xy和内容区域的xy对齐,
+	但是如果viewBox的尺寸不是等比缩放的, 那么系统就会调整viewBox的位置, 我们设置的x/y会失效
+	此时如果需要viewBox的xy和内容区域(viewProt)的xy继续保持从何, 那么就需要使用preserveAspectRatio属性来设置对齐方式
+
+#### preserveAspectRatio属性:
+	preserveAspectRatio 第一个参数
+	xMin	viewport和viewBox左边对齐
+	xMid	viewport和viewBox x轴中心对齐
+	xMax	viewport和viewBox右边对齐
+	YMin	viewport和viewBox上边缘对齐。注意Y是大写。
+	YMid	viewport和viewBox y轴中心点对齐。注意Y是大写。
+	YMax	viewport和viewBox下边缘对齐。注意Y是大写。
+
+	preserveAspectRatio 第二个参数
+	meet	保持纵横比缩放viewBox适应viewport
+	slice	保持纵横比同时比例小的方向放大填满viewport
+	none	扭曲纵横比以充分适应viewport
+
+#### 代码示例：
+```html
+<svg width="200" height="200" viewBox="0 0 50 150" preserveAspectRatio="xMinYMin">
+    <circle cx="50" cy="50" r="50" fill="red"></circle>
+</svg>
+```
+
+## 动画
+### 动画使用方式
+1. 直接在需要执行动画的标签下定义动画
+
+2. 将定义好的动画运用到指定标签上
+
+### 动画属性：
+	attributeType: CSS/XML 规定的属性值的名称空间
+    attributeName: 规定元素的哪个属性会产生动画效果
+    from/to: 从哪到哪
+    dur: 动画时长
+    fill: 动画结束之后的状态 保持freeze结束状态/remove恢复初始状态
+	repeatCount: 规定动画重复的次数。
+    repeatDur: 规定动画重复总时长
+    begin: 规定动画开始的时间
+        begin="1s"
+        begin="click"
+        begin="click + 1s"
+    restart: 规定元素开始动画之后，是否可以被重新开始执行
+        always：动画可以在任何时候被重置。这是默认值。
+        whenNotActive：只有在动画没有被激活的时候才能被重置，例如在动画结束之后。
+        never：在整个SVG执行的过程中，元素动画不能被重置。
+    calcMode: 规定每一个动画片段的动画表现
+        linear：默认属性值, 匀速动画
+        discrete: 非连续动画, 没有动画效果瞬间完成
+        paced: 规定整个动画效果始终以相同的速度进行，设置keyTimes属性无效
+        spline: 配合keySplines属性来定义各个动画过渡效, 自定义动画
+    keyTimes:
+        划分动画时间片段, 取值0-1
+    values:
+        划分对应取值片段的值
+#### 基础动画
++ 通过animate标签定义
+##### 代码示例
+```html
+<circle cx="100" cy="100" r="50" fill="blue">
+            <animate
+                    attributeName="r"
+                    from="50"
+                    to="100"
+                    dur="5s"
+                    fill="freeze"
+            ></animate>
+        </circle>
+```
+
+#### 形变动画
++ 通过animateTransform标签定义
+
+##### 代码示例:
+```html
+<rect x="100" y="100" width="300" height="200" fill="blue">
+        <animateTransform
+                attributeName="transform"
+                type="scale"
+                from="1 1"
+                to="0.5 1"
+                dur="2s"
+                begin="click"
+                fill="freeze"
+        ></animateTransform>
+    </rect>
+```
+
+#### 路径动画:
++ 通过animateMotion标签定义
+
+##### 代码示例
+```html
+<path d="M0 0 C0 300 300 300 300 0" stroke="red" stroke-width="2" fill="none"></path>
+    <rect x="0" y="0" width="40" height="40" fill="rgba(255,0,0,0.5)">
+        <animateMotion
+            path="M0 0 C0 300 300 300 300 0"
+            dur="5s"
+            begin="click"
+            fill="freeze"
+            rotate="auto"
+        ></animateMotion>
+    </rect>
+```
+
+## SVG脚本编程
+#### 脚本编程注意点：
+1. 创建SVG时必须指定命名空间
+```javascript
+	const SVG_NS = "http://www.w3.org/2000/svg"
+    // let oSvg = document.createElement("svg"); //错误
+    let oSvg = document.createElementNS(SVG_NS,"svg");//正确
+```
+
+2. 使用xlink属性也必须指定命名空间
+```javascript
+	const XLINK_NS = "http://www.w3.org/1999/xlink";
+    // oImage.setAttribute("xlink:href", "images/image.jpg");//错误
+    oImage.setAttributeNS(XLINK_NS,"xlink:href", "images/lnj.jpg");//正确
+```
