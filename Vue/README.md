@@ -54,7 +54,7 @@ data:{
 }
 ```
 ##### 双向绑定：
-+ Vue双向绑定是利用`V-model`标签实现的。
++ Vue双向绑定是利用`V-model`指令实现的。
 + Vue中`input`、`textarea`、`select`元素可以双向绑定
 ```
 <input v-model="value">
